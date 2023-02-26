@@ -1,24 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import { createContext, useEffect, useState } from "react";
+import Header from "./components/Header";
+import LandingPage from "./components/LandingPage";
+
+//context to get root functionality
+export const AppContext = createContext();
 
 function App() {
+  //states of the app
+  const [data, setData] = useState(null);
+  const [searchData, setSearchData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [imageDetails, setImageDetails] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
+
+  //all urls
+  const photos_url = `https://api.unsplash.com/photos?client_id=${process.env.REACT_APP_ACCESS_KEY}`;
+  const search_url = `https://api.unsplash.com/search/photos?&query=${searchInput}&client_id=${process.env.REACT_APP_ACCESS_KEY}`;
+
+  //get the from photos_url
+  useEffect(() => {
+    setIsLoading(true);
+    axios
+      .get(photos_url)
+      .then((response) => {
+        setData(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => console.log(error));
+  }, [photos_url]);
+
+  //get data search_url
+  useEffect(() => {
+    setIsLoading(true);
+    axios
+      .get(search_url)
+      .then((response) => {
+        setSearchData(response.data.results);
+        setIsLoading(false);
+      })
+      .catch((error) => console.log(error));
+  }, [search_url]);
+
+  //sending app info
+  const appInfo = {
+    setSearchInput,
+    isLoading,
+    searchInput,
+    searchData,
+    setImageDetails,
+    data,
+    imageDetails,
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider value={appInfo}>
+      <Header />
+      <LandingPage />
+    </AppContext.Provider>
   );
 }
 
