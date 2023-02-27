@@ -14,7 +14,6 @@ const LandingPage = () => {
     data,
     imageDetails,
   } = useContext(AppContext);
-
   return (
     <section>
       <div className="landing-hero flex justify-center items-center">
@@ -45,6 +44,7 @@ const LandingPage = () => {
                     img={img}
                     key={img.id}
                     setImageDetails={setImageDetails}
+              
                   />
                 ))
               : data?.map((img) => (

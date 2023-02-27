@@ -9,12 +9,12 @@ const ImageBox = ({ img , setImageDetails}) => {
     >
       <label htmlFor="photo-modal" onClick={()=> setImageDetails(img)}>
         <img
-          src={img?.urls.regular}
+          src={img?.urls.thumb}
           alt="UnsplashImage"
           className="rounded-t-xl cursor-pointer w-full"
         />
       </label>
-      <div className="flex items-center justify-between p-4">
+      <div className="md:flex items-center justify-between p-4">
         <p className="flex items-center gap-2 text-sm md:font-semibold">
           <AiOutlineUser/> {img?.user.name}
         </p>
