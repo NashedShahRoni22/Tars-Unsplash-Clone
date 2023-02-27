@@ -25,7 +25,7 @@ const PhotoModal = ({ imageDetails }) => {
           }
           
           {/* modal content */}
-          <div className="flex justify-between p-4">
+          <div className="md:flex justify-between p-4">
             <div className="flex items-center gap-4">
               <img
                 src={imageDetails?.user.profile_image.medium}
@@ -41,7 +41,7 @@ const PhotoModal = ({ imageDetails }) => {
                 </p>
               </div>
             </div>
-            <div>
+            <div className="mt-3 md:mt-0">
               {imageDetails?.user.social.instagram_username && (
                 <p className="flex items-center gap-2 font-semibold">
                   <AiOutlineInstagram />{" "}
