@@ -15,8 +15,8 @@ function App() {
   const [searchInput, setSearchInput] = useState("");
 
   //all urls
-  const photos_url = `https://api.unsplash.com/photos?client_id=${process.env.REACT_APP_ACCESS_KEY}`;
-  const search_url = `https://api.unsplash.com/search/photos?&query=${searchInput}&client_id=${process.env.REACT_APP_ACCESS_KEY}`;
+  const photos_url = `https://api.unsplash.com/photos?client_id=SVbWr7AhrDpWb2EiHHwm-i4K1sytxI2hitF1IkYf-Zc`;
+  const search_url = `https://api.unsplash.com/search/photos?&query=${searchInput}&client_id=SVbWr7AhrDpWb2EiHHwm-i4K1sytxI2hitF1IkYf-Zc`;
 
   //get the from photos_url
   useEffect(() => {
